@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<head>
+    <title> DOM </title>
+    <!--link rel="stylesheet" type="text/css" href="style.css"!---->
+    <style>
+        #tablica {
+            border: 1px solid black;
+            margin: 5px;
+            background-color: gray;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        
+        .text {
+            font-size: large;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        
+        .textDIV {
+            font-size: large;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-style: italic;
+            color: chocolate;
+        }
+        
+        .demo {
+            color: crimson;
+        }
+    </style>
+
+    <body>
+        <!-- #region -->
+        <div class="text">Liczenie elementów "p" w tablicy:</div>
+        <div id=tablica>
+            <p>Pierwszy wpis</p>
+            <p>Drugi wpis</p>
+            <p>Trzeci wpis</p>
+            <p>Czwarty wpis</p>
+            <p>Piąty wpis</p>
+        </div>
+
+        <button onclick="liczenie()">Policz</button>
+
+        <div id=placehold1></div>
+
+        <div id=budowa class="text">Kliknij aby podejrzeć budowę tej stronki </div>
+        <button onclick="budowa()">Pokaż budowę</button>
+        <div id=plch2></div>
+        <div class="text">Sprawdzanie ilości atrybutów elementu:</div>
+        <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;border-radius: 10px;" id="elem" class="klasa1" data-="grid">Przykładowy element</div>
+        <button onclick="sprawdz()">Sprawdź</button>
+        <div id=plch3></div>
+        <!------->
+        <div class="text">Zmiana klasy przykładowego elementu:</div>
+        <div id="myDIV">
+            Element div
+        </div>
+        <button onclick="zmianakl()">Zmień klasę</button>
+        <!------------------>
+        <div class="text">Tworzenie nowego elementu "button"</div>
+        <button onclick="btn()">Stwórz nowy przycisk</button>
+        <!---------------->
+        <div class="text">Tworzenie nowego elementu "text"</div>
+        <button onclick="crtxt()">Stwórz elem. text</button>
+        <!--------------------->
+        <div class="text" id="textbox">Edycja html</div>
+        <button onclick="change()">Tekst</button>
+        <div class="textDIV" id="temp">Losowy tekst który możesz zamienić</div>
+        <!------------------>
+        <div class="text">Operacje na atrybutach</div>
+        <button onclick="zmianakolor()" id="colorch">Zmiana koloru</button>
+        <button onclick="testatr()" id="testatr">Test na posiadanie atrybutu</button>
+        <!----------------->
+
+        <!-- #endregion -->
+        <script>
+            function liczenie() {
+                var nodelist = document.getElementsByTagName("P").length;
+                document.getElementById("placehold1").innerHTML = nodelist;
+            }
+
+            function budowa() {
+                var c = document.body.childNodes;
+                var txt = "";
+                var i;
+                for (i = 0; i < c.length; i++) {
+                    txt = txt + c[i].nodeName + "<br>";
+                }
+
+                document.getElementById("plch2").innerHTML = txt;
+            }
+
+            function sprawdz() {
+                var x = document.getElementById("elem").attributes.length;
+                document.getElementById("plch3").innerHTML = x;
+            }
+
+            function zmianakl() {
+                document.getElementById("myDIV").classList.add("textDIV");
+            }
+
+            function btn() {
+                var btn = document.createElement("BUTTON");
+                btn.innerHTML = "kliknij mnie";
+                document.body.appendChild(btn);
+            }
+
+            function crtxt() {
+                var t = document.createTextNode("_Losowy tekst_");
+                document.body.appendChild(t);
+            }
+
+            function change() {
+                document.getElementById("temp").innerHTML = "Text zmieniony!";
+            }
+
+            function zmianakolor() {
+                document.getElementById("colorch").setAttribute("class", "demo")
+            }
+
+            function testatr() {
+                if (document.getElementById("testatr").hasAttributes() == true) {
+                    var audio = new Audio('http://soundbible.com/mp3/Blop-Mark_DiAngelo-79054334.mp3');
+                    audio.play();
+                    alert("Element posiada atrybuty!");
+                } else {
+                    alert("Element nie posiada atrybutów");
+                }
+            }
+        </script>
+
+    </body>
+</head>
