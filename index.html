@@ -71,8 +71,17 @@
         <button onclick="zmianakolor()" id="colorch">Zmiana koloru</button>
         <button onclick="testatr()" id="testatr">Test na posiadanie atrybutu</button>
         <!----------------->
-
+        <div class="text">Odczytywanie ost "dziecka" elementu:</div>
+        <ul id="myList">
+            <li>Matematyka</li>
+            <li>J.Polski</li>
+            <li>Geografia</li>
+        </ul>
+        <button onclick="lista()">Sprawdź</button>
+        <div id="demos"></div>
         <!-- #endregion -->
+        <!----------------------------------->
+
         <script>
             function liczenie() {
                 var nodelist = document.getElementsByTagName("P").length;
@@ -126,6 +135,11 @@
                 } else {
                     alert("Element nie posiada atrybutów");
                 }
+            }
+
+            function lista() {
+                var list = document.getElementById("myList").lastElementChild.innerHTML;
+                document.getElementById("demos").innerHTML = list;
             }
         </script>
 
